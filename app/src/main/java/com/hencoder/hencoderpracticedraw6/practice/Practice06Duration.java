@@ -17,6 +17,8 @@ public class Practice06Duration extends LinearLayout {
     TextView durationValueTv;
     Button animateBt;
     ImageView imageView;
+    int animateState = 0;
+    int animateCount = 2;
 
     int duration = 300;
 
@@ -64,7 +66,22 @@ public class Practice06Duration extends LinearLayout {
         animateBt.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO 在这里处理点击事件，执行动画。记得使用 `setDuration(duration)` 来设置动画的时长。
+                switch (animateState) {
+                    case 0 :
+                        imageView.animate().translationX(500)
+                                .setDuration(duration);
+                        break;
+                    case 1:
+                        imageView.animate().translationX(0)
+                                .setDuration(duration);
+                        break;
+                    default :
+                        break;
+                }
+                animateState++;
+                if(animateState >= animateCount) {
+                    animateState = 0;
+                }
             }
         });
     }

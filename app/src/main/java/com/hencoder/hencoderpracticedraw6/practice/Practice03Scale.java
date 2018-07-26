@@ -13,6 +13,8 @@ import com.hencoder.hencoderpracticedraw6.R;
 public class Practice03Scale extends RelativeLayout {
     Button animateBt;
     ImageView imageView;
+    int scaleState = 0;
+    int scaleCount = 4;
 
     public Practice03Scale(Context context) {
         super(context);
@@ -36,7 +38,27 @@ public class Practice03Scale extends RelativeLayout {
         animateBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                // TODO 在这里处理点击事件，通过 View.animate().scaleX/Y() 来让 View 放缩
+                switch (scaleState) {
+                    case 0:
+                        imageView.animate().scaleX(1.3f);
+                        break;
+                    case 1:
+                        imageView.animate().scaleX(1f);
+                        break;
+                    case 2:
+                        imageView.animate().scaleY(0.7f);
+                        break;
+                    case 3:
+                        imageView.animate().scaleY(1f);
+                        break;
+                    default :
+                        break;
+                }
+
+                scaleState++;
+                if(scaleState >= scaleCount) {
+                    scaleState = 0;
+                }
             }
         });
     }
